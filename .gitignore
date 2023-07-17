@@ -1,2 +1,4 @@
 /.idea/
 /authorization-server.iml
+/backend-resources/backend-resources.iml
+/backend-gateway-client/backend-gateway-client.iml
