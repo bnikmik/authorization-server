@@ -1,0 +1,28 @@
+server:
+  port: 8083
+
+spring:
+  application.name: backend-gateway-client
+  cloud:
+    gateway:
+      routes:
+        - id: resources
+          uri: http://localhost:8082/hello
+          predicates:
+            Path=/hello/**
+          filters:
+            TokenRelay=
+  security:
+    oauth2:
+      client:
+        registration:
+          gateway:
+            provider: my-provider
+            client-id: test-client
+            client-secret: 9ad00ldvDH0TYkYoHPqd4IsMnTfrzotc
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8083/login/oauth2/code/{registrationId}"
+            scope: openid, test-scope
+        provider:
+          my-provider:
+            issuer-uri: http://localhost:8080/auth/realms/test-realm
